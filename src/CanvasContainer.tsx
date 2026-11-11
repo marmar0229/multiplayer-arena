@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useRef, useEffect } from "react"
 import { io } from "socket.io-client"
-const socket  = io('http://localhost:3000')
+const socket = io('https://multiplayer-arena-backend-ako4.onrender.com')
 // everytime player collides with food in if statement add plius 1 to state or reg variable see if u ca
 // make more than 2 food appear when food is eaten  cause render 
 export default function CanvasContainer({ user }: { user: string }) {

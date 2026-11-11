@@ -6,7 +6,7 @@ import React from "react"
 import { useState } from "react"
 import CanvasContainer from "./CanvasContainer" // Make sure this matches your canvas filename
 export default function App (){
-
+  const backendUrl = 'https://multiplayer-arena-backend-ako4.onrender.com'
   const [loggedInUser, setLoggedInUser] = useState<string | null>(null)
   const [routeVariable, changeRouteVariable] = useState('')
 
@@ -21,7 +21,7 @@ export default function App (){
     if (routeVariable === '/createuser') {
       const receiveToken = async () => {
         try {
-          const response = await fetch(routeVariable, {
+          const response = await fetch(`${backendUrl}${routeVariable}`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -32,7 +32,7 @@ export default function App (){
 
           if (response.ok) {
             const token = await response.json()
-            fetch('/createuser', {
+            fetch(`${backendUrl}/createuser`, {
               headers: {
                 'Authorization': `Bearer ${token.token}`
               }
@@ -48,7 +48,7 @@ export default function App (){
       const runLogin = async () => {
         // ✅ FULL FIX: Added try/catch to protect against network drops and server crashes
         try {
-          const response = await fetch(routeVariable, {
+          const response = await fetch(`${backendUrl}${routeVariable}`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
